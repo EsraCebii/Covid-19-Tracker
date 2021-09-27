@@ -6,5 +6,6 @@
 + Reduxjs toolkit
 + Covid-19 API
 + UI  
-  + Semantic uı
+  + Semantic UI
+  + Material UI
   
