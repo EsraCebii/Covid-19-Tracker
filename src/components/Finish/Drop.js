@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState}  from 'react'
 import { Dropdown } from 'semantic-ui-react';
-import "./style.css"
+import "./style.css";
+
 
 const countryOptions = [
     { key: 'tr', value: 'tr', flag: 'tr', text: 'Turkey' },
@@ -30,6 +31,9 @@ const countryOptions = [
   ]
 
 function Drop() {
+  const[city, setCity]= useState("");
+  console.log(city);
+  
     return (
         <div className="drop">
         <Dropdown
@@ -37,6 +41,8 @@ function Drop() {
         search
         selection
         options={countryOptions}
+        onChange={(e)=> setCity(e.target.text)}
+        value={city}
       />
       </div>
     )

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 export const fetchValues = createAsyncThunk('values/getValues', async () => {
     const res = await axios(`${process.env.REACT_APP_API_BASE_ENDPOINT}`);
     return res.data;

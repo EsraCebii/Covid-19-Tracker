@@ -19,7 +19,6 @@ function Card4() {
     },[dispatch])
 
     // console.log(data.confirmed.value);
-    console.log(data);
 
     if(isLoading) {
         return <div>Loading..</div>

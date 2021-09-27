@@ -5,6 +5,7 @@ function Finish() {
     return (
         <div>
             <Drop />
+            
         </div>
     )
 }
