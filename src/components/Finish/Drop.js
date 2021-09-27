@@ -1,7 +1,9 @@
 import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react';
+import "./style.css"
 
 const countryOptions = [
+    { key: 'tr', value: 'tr', flag: 'tr', text: 'Turkey' },
     { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
     { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
     { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
@@ -26,18 +28,18 @@ const countryOptions = [
     { key: 'bz', value: 'bz', flag: 'bz', text: 'Belize' },
     { key: 'bj', value: 'bj', flag: 'bj', text: 'Benin' },
   ]
-  
 
 function Drop() {
     return (
+        <div className="drop">
         <Dropdown
         placeholder='Select Country'
-        fluid
         search
         selection
         options={countryOptions}
       />
+      </div>
     )
 }
 
-export default Drop
+export default Drop;
