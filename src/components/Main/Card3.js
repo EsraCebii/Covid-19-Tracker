@@ -18,7 +18,7 @@ function Card3() {
         dispatch(fetchValues())
     },[dispatch])
 
-    // console.log(data.confirmed.value);
+  
 
 
     if(isLoading) {
@@ -33,10 +33,10 @@ function Card3() {
         <Card sx={{  bgcolor: orange[100] }} >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Active
+          Confirmed
         </Typography>
         <Typography variant="h5" component="div">
-          {/* {data.deaths.value} */}
+          {/* { country !== worl} */}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Last Updated at : {data.lastUpdate}

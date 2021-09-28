@@ -2,7 +2,6 @@ import React from 'react';
 import Card1 from './Card1';
 import Card2 from './Card2';
 import Card3 from './Card3';
-import Card4 from './Card4';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -16,21 +15,19 @@ const Item = styled(Paper)(({ theme }) => ({
   }));
   
 
-function Main() {
+function Main({country, countryInfo}) {
+ 
     return (
         <Box sx={{ flexGrow: 1 }} style={{margin: 80}}>
         <Grid container spacing={8}>
-          <Grid item xs={3}>
-            <Item> <Card1 /> </Item>
+          <Grid item xs={4}>
+            <Item> <Card1 country={country} countryInfo={countryInfo} /> </Item>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <Item> <Card2 /> </Item>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <Item> <Card3 /> </Item>
-          </Grid>
-          <Grid item xs={3}>
-            <Item> <Card4 /> </Item>
           </Grid>
         </Grid>
       </Box>

@@ -18,7 +18,7 @@ function Card2() {
         dispatch(fetchValues())
     },[dispatch])
 
-
+    // console.log(data.recovered.value);
     if(isLoading) {
         return <div>Loading..</div>
     }

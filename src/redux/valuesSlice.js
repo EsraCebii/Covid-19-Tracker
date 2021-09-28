@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const fetchValues = createAsyncThunk('values/getValues', async () => {
-    const res = await axios(`${process.env.REACT_APP_API_BASE_ENDPOINT}`);
+    const res = await axios(`https://covid19.mathdro.id/api/`);
     return res.data;
 });
 
