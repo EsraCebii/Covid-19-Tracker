@@ -1,51 +1,53 @@
-import React, {useState}  from 'react'
-import { Dropdown } from 'semantic-ui-react';
-import "./style.css";
-
-
-const countryOptions = [
-    { key: 'tr', value: 'tr', flag: 'tr', text: 'Turkey' },
-    { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
-    { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
-    { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
-    { key: 'dz', value: 'dz', flag: 'dz', text: 'Algeria' },
-    { key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },
-    { key: 'ad', value: 'ad', flag: 'ad', text: 'Andorra' },
-    { key: 'ao', value: 'ao', flag: 'ao', text: 'Angola' },
-    { key: 'ai', value: 'ai', flag: 'ai', text: 'Anguilla' },
-    { key: 'ag', value: 'ag', flag: 'ag', text: 'Antigua' },
-    { key: 'ar', value: 'ar', flag: 'ar', text: 'Argentina' },
-    { key: 'am', value: 'am', flag: 'am', text: 'Armenia' },
-    { key: 'aw', value: 'aw', flag: 'aw', text: 'Aruba' },
-    { key: 'au', value: 'au', flag: 'au', text: 'Australia' },
-    { key: 'at', value: 'at', flag: 'at', text: 'Austria' },
-    { key: 'az', value: 'az', flag: 'az', text: 'Azerbaijan' },
-    { key: 'bs', value: 'bs', flag: 'bs', text: 'Bahamas' },
-    { key: 'bh', value: 'bh', flag: 'bh', text: 'Bahrain' },
-    { key: 'bd', value: 'bd', flag: 'bd', text: 'Bangladesh' },
-    { key: 'bb', value: 'bb', flag: 'bb', text: 'Barbados' },
-    { key: 'by', value: 'by', flag: 'by', text: 'Belarus' },
-    { key: 'be', value: 'be', flag: 'be', text: 'Belgium' },
-    { key: 'bz', value: 'bz', flag: 'bz', text: 'Belize' },
-    { key: 'bj', value: 'bj', flag: 'bj', text: 'Benin' },
-  ]
+import React, { useState, useEffect } from 'react';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAllCounties} from "../../redux/contriesSlice";
 
 function Drop() {
-  const[city, setCity]= useState("");
-  console.log(city);
+  const dispatch = useDispatch();
+  const [country, setCountry] = useState("worldwide");
+  const [countryList, setCountryList] = useState([]);
+  const [countryInfo, setCountryInfo] = useState({});
+
+  const data = useSelector((state) => state.countries.items);
+  console.log(country);
+
   
-    return (
-        <div className="drop">
-        <Dropdown
-        placeholder='Select Country'
-        search
-        selection
-        options={countryOptions}
-        onChange={(e)=> setCity(e.target.text)}
-        value={city}
-      />
-      </div>
-    )
+  useEffect(() => {
+    dispatch(fetchAllCounties())
+
+  }, [dispatch]);
+  
+
+  const onCountryChange = async (e) => {
+    const countryCode = e.target.value;
+    const url =
+      countryCode === "worldwide"
+        ? "https://covid19.mathdro.id/api/countries"
+        : `https://covid19.mathdro.id/api/countries/${countryCode}`;
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setCountry(countryCode);
+        setCountryInfo(data);
+      });
+  };
+  return (
+    <div>
+      <Select
+        variant="outlined"
+        value={country}
+        onChange={onCountryChange}
+      >
+        <MenuItem value="worldwide">Worldwide</MenuItem>
+        {data.map((country,key) => (
+          <MenuItem value={country.countryInfo.iso2} key={key}>{country.country} </MenuItem>
+        ))}
+      </Select>
+
+    </div>
+  )
 }
 
-export default Drop;
+export default Drop
