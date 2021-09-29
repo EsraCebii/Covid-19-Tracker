@@ -7,9 +7,9 @@ import { fetchValues } from "../../redux/valuesSlice";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { orange} from '@mui/material/colors';
+import { yellow} from '@mui/material/colors';
 
-function Card3({country, countryInfo}) {
+function Card4({country, countryInfo, fetchData}) {
     const data = useSelector((state)=> state.covidvalues.values);
     const isLoading = useSelector((state)=> state.isLoading);
     const error = useSelector((state)=> state.error);
@@ -31,15 +31,15 @@ function Card3({country, countryInfo}) {
     
     return (
         <div>
-        <Card sx={{  bgcolor: orange[100] }} >
+        <Card sx={{  bgcolor: yellow[100] }} >
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-         Infected
+        Active
         </Typography>
         <Typography variant="h5" component="div">
         <CountUp
                   start={0}
-                  end={countryInfo?.confirmed?.value}
+                  end={fetchData?.confirmed?.value - (fetchData?.recovered?.value + fetchData?.deaths?.value)}
                   duration={2}
                   separator=","
               />
@@ -70,4 +70,4 @@ function Card3({country, countryInfo}) {
     )
 }
 
-export default Card3;
+export default Card4;

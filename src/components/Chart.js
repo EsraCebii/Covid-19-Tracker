@@ -1,40 +1,73 @@
-import React, {useEffect, useState} from 'react';
-import { Line, Bar } from "react-chartjs-2";
-import { fetchDailyData} from "../redux/contriesSlice"
+import React from 'react';
+import {  Bar } from "react-chartjs-2";
+import "./Main/style.css";
 
-function Chart() {
-    const [dailyData, setDailyData] = useState([]);
-    useEffect(() => {
-        const fetchAPI = async () => {
-          setDailyData(await fetchDailyData());
-        };
-        fetchAPI();
-      }, []);
-    return (
-        <div>
-        <Line
+
+function Chart({ fetchdata, country, countryInfo }) {
+  const barChart = country=== 'worldwide'  ? (
+    <Bar
       data={{
-        labels:34,
+        labels: ["Deaths", "Recovered", "Infected", "Active"],
         datasets: [
           {
-            data: 13,
-            label: "Infected",
-            borderColor: "#3333ff",
-            fill: true,
-          },
-          {
-            data: 12,
-            label: "Deaths",
-            borderColor: "red",
-            backgroundColor: "rgba(255,0,0,0.5)",
-            fill: true,
+            label: "Worldwide",
+            backgroundColor: [
+              "rgb(229, 115, 115)",
+              "rgb(121, 134, 203)",
+              "rgb(255, 183, 77)",
+              "rgb(255, 241, 118)",
+            ],
+            hoverBackgroundColor: [
+              "rgb(244, 67, 54)",
+              "rgb(63, 81, 181)",
+              "rgb(255, 152, 0)",
+              "rgb(255, 235, 59)",
+            ],
+            data: [
+              fetchdata?.deaths?.value,
+              fetchdata?.recovered?.value,
+              fetchdata?.confirmed?.value,
+              fetchdata?.confirmed?.value - (fetchdata?.recovered?.value + fetchdata?.deaths?.value),
+            ],
           },
         ],
       }}
     />
-            
-        </div>
-    )
-}
+  ) : (
+    <Bar
+    data={{
+      labels: ["Deaths", "Recovered", "Infected", "Active"],
+      datasets: [
+        {
+          label: country,
+          backgroundColor: [
+            "rgb(229, 115, 115)",
+            "rgb(121, 134, 203)",
+            "rgb(255, 183, 77)",
+            "rgb(255, 241, 118)",
+          ],
+          hoverBackgroundColor: [
+            "rgb(244, 67, 54)",
+            "rgb(63, 81, 181)",
+            "rgb(255, 152, 0)",
+            "rgb(255, 235, 59)",
+          ],
+          data: [
+            countryInfo?.deaths?.value,
+            countryInfo?.recovered?.value,
+            countryInfo?.confirmed?.value,
+            countryInfo?.confirmed?.value - (countryInfo?.recovered?.value + countryInfo?.deaths?.value),
+          ],
+        },
+      ],
+    }}
+  />
 
-export default Chart
+  );
+
+  return (
+    <div className="container">{barChart}</div>
+  );
+};
+
+export default Chart;

@@ -20,7 +20,8 @@ function Card1({country, countryInfo}) {
   useEffect(() => {
     dispatch(fetchValues())
   }, [dispatch])
-
+  console.log(data, "data");
+  console.log(countryInfo, "countryInfo");
   
   
 

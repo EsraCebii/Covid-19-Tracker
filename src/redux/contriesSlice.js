@@ -19,6 +19,7 @@ export const fetchAllCounties = createAsyncThunk('countries/fetchAll', async () 
     return res.data;
 })
 
+
 export const countriesSlice = createSlice({
     name: 'countries',
     initialState: {
