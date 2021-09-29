@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllCounties} from "../../redux/contriesSlice";
 import Main from "../Main";
+import  "./style.css"
 
 
 function Drop() {
@@ -13,8 +14,6 @@ function Drop() {
 
   const data = useSelector((state) => state.countries.items);
   
-
-  console.log(countryInfo);
   useEffect(() => {
     dispatch(fetchAllCounties())
 
@@ -36,6 +35,7 @@ function Drop() {
     <div>
       <Main country={country} countryInfo={countryInfo}/>
       <Select
+      className="select"
         variant="outlined"
         value={country}
         onChange={onCountryChange}
@@ -45,8 +45,6 @@ function Drop() {
           <MenuItem value={country.countryInfo.iso2} key={key}>{country.country} </MenuItem>
         ))}
       </Select>
-      
-     
 
     </div>
   )

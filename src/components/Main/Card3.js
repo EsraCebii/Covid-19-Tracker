@@ -1,4 +1,5 @@
 import React,{ useEffect} from 'react';
+import CountUp from "react-countup";
 
 import { useSelector, useDispatch} from 'react-redux';
 
@@ -36,11 +37,30 @@ function Card3({country, countryInfo}) {
           Confirmed
         </Typography>
         <Typography variant="h5" component="div">
-        {(country === 'worldwide' ? data?.confirmed?.value : countryInfo?.confirmed?.value)}
+        <CountUp
+                  start={0}
+                  end={countryInfo?.confirmed?.value}
+                  duration={2}
+                  separator=","
+              />
+        {(country === 'worldwide' ?  <CountUp
+                  start={0}
+                  end={data?.confirmed?.value}
+                  duration={2}
+                  separator=","
+              /> :  <CountUp
+              start={0}
+              end={countryInfo?.confirmed?.value}
+              duration={2}
+              separator=","
+          />)}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Last Updated at : {data.lastUpdate}
+        <Typography sx={{ mb: 1 }} color="text.secondary">
+          Last Updated at :  {new Date(data.lastUpdate).toDateString()}
         </Typography>
+        <Typography sx={{ mb: 1 }} color="text.secondary">
+            {new Date(data.lastUpdate).toLocaleTimeString()}
+          </Typography>
         <Typography variant="body2">
           Number of Active Cases of COVID-19 <strong> {country} </strong>
         </Typography>

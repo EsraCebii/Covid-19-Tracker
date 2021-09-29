@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import numeral from "numeral";
+import CountUp from "react-countup";
 
 import { fetchValues } from "../../redux/valuesSlice";
 import Card from '@mui/material/Card';
@@ -39,11 +39,26 @@ function Card1({country, countryInfo}) {
             Deaths
           </Typography>
           <Typography variant="h5" component="div">
-            {(country === 'worldwide' ? data?.deaths?.value : countryInfo?.deaths?.value)}
-           
+            {(country === 'worldwide' ? (
+               <CountUp
+                  start={0}
+                  end={data?.deaths?.value}
+                  duration={2}
+                  separator=","
+              />) :
+               (<CountUp
+                  start={0}
+                  end={countryInfo?.deaths?.value}
+                  duration={2}
+                  separator=","
+                />)
+            )}
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Last Updated at : {data.lastUpdate}
+          <Typography sx={{ mb: 1}} color="text.secondary">
+            Last Updated at :  {new Date(data.lastUpdate).toDateString()}  {new Date(data.lastUpdate).toLocaleTimeString()}
+          </Typography>
+          <Typography sx={{ mb: 1 }} color="text.secondary">
+            {new Date(data.lastUpdate).toLocaleTimeString()}
           </Typography>
           <Typography variant="body2">
             Number of deaths caused by COVID-19 <strong> {country} </strong>
