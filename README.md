@@ -1,5 +1,6 @@
 # Covid 19 Tracker
   By default, Covid-19 tracker shows the number of people who died, recovered, active, infected worldwide. When country is selected, it shows by country. This tracker also shows data in chart.
+  [View ](https://esra-corona.netlify.app/)
 
 ## Technologies
 + React
