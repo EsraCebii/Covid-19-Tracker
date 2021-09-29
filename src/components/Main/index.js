@@ -24,10 +24,10 @@ function Main({country, countryInfo}) {
             <Item> <Card1 country={country} countryInfo={countryInfo} /> </Item>
           </Grid>
           <Grid item xs={4}>
-            <Item> <Card2 /> </Item>
+            <Item> <Card2 country={country} countryInfo={countryInfo} /> </Item>
           </Grid>
           <Grid item xs={4}>
-            <Item> <Card3 /> </Item>
+            <Item> <Card3 country={country} countryInfo={countryInfo}/> </Item>
           </Grid>
         </Grid>
       </Box>

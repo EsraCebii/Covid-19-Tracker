@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { indigo} from '@mui/material/colors';
 
-function Card2() {
+function Card2({country, countryInfo}) {
     const data = useSelector((state)=> state.covidvalues.values);
     const isLoading = useSelector((state)=> state.isLoading);
     const error = useSelector((state)=> state.error);
@@ -17,8 +17,7 @@ function Card2() {
     useEffect(()=> {
         dispatch(fetchValues())
     },[dispatch])
-
-    // console.log(data.recovered.value);
+  
     if(isLoading) {
         return <div>Loading..</div>
     }
@@ -31,16 +30,16 @@ function Card2() {
         <Card sx={{  bgcolor: indigo[100] }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Recovered
+          Recovered 
         </Typography>
         <Typography variant="h5" component="div">
-         {/* {data.recovered.value} */}
+        {(country === 'worldwide' ? data?.recovered?.value : countryInfo?.recovered?.value)}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Last Updated at : {data.lastUpdate}
         </Typography>
         <Typography variant="body2">
-          Number of recovireis from COVID-19
+          Number of recovireis from COVID-19 <strong> {country} </strong>
         </Typography>
       </CardContent>
     </Card>

@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { orange} from '@mui/material/colors';
 
-function Card3() {
+function Card3({country, countryInfo}) {
     const data = useSelector((state)=> state.covidvalues.values);
     const isLoading = useSelector((state)=> state.isLoading);
     const error = useSelector((state)=> state.error);
@@ -36,13 +36,13 @@ function Card3() {
           Confirmed
         </Typography>
         <Typography variant="h5" component="div">
-          {/* { country !== worl} */}
+        {(country === 'worldwide' ? data?.confirmed?.value : countryInfo?.confirmed?.value)}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Last Updated at : {data.lastUpdate}
         </Typography>
         <Typography variant="body2">
-          Number of Active Cases of COVID-19
+          Number of Active Cases of COVID-19 <strong> {country} </strong>
         </Typography>
       </CardContent>
     </Card>

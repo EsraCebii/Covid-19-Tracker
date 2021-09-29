@@ -4,7 +4,6 @@ import MenuItem from '@mui/material/MenuItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllCounties} from "../../redux/contriesSlice";
 import Main from "../Main";
-import Chart from '../Chart';
 
 
 function Drop() {
@@ -46,7 +45,7 @@ function Drop() {
           <MenuItem value={country.countryInfo.iso2} key={key}>{country.country} </MenuItem>
         ))}
       </Select>
-      <Chart />
+      
      
 
     </div>

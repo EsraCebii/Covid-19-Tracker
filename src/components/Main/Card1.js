@@ -22,9 +22,7 @@ function Card1({country, countryInfo}) {
   }, [dispatch])
 
   
-  // console.log(countryInfo);
-  // console.log(data);
-  // console.log(data.deaths.value);
+  
 
   if (isLoading) {
     return <div>Loading..</div>
@@ -41,12 +39,14 @@ function Card1({country, countryInfo}) {
             Deaths
           </Typography>
           <Typography variant="h5" component="div">
+            {(country === 'worldwide' ? data?.deaths?.value : countryInfo?.deaths?.value)}
+           
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             Last Updated at : {data.lastUpdate}
           </Typography>
           <Typography variant="body2">
-            Number of deaths caused by COVID-19 {country}
+            Number of deaths caused by COVID-19 <strong> {country} </strong>
           </Typography>
         </CardContent>
       </Card>
