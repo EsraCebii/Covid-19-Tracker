@@ -12,10 +12,10 @@ function Chart({ fetchdata, country, countryInfo }) {
           {
             label: "Worldwide",
             backgroundColor: [
-              "rgb(229, 115, 115)",
+              "rgb(239, 154, 154)",
               "rgb(121, 134, 203)",
-              "rgb(255, 183, 77)",
-              "rgb(255, 241, 118)",
+              "rgb(255, 204, 128)",
+              "rgb(255, 245, 157)",
             ],
             hoverBackgroundColor: [
               "rgb(244, 67, 54)",
@@ -41,10 +41,10 @@ function Chart({ fetchdata, country, countryInfo }) {
         {
           label: country,
           backgroundColor: [
-            "rgb(229, 115, 115)",
+            "rgb(239, 154, 154)",
             "rgb(121, 134, 203)",
-            "rgb(255, 183, 77)",
-            "rgb(255, 241, 118)",
+            "rgb(255, 204, 128)",
+            "rgb(255, 245, 157)",
           ],
           hoverBackgroundColor: [
             "rgb(244, 67, 54)",
